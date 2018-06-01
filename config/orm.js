@@ -3,6 +3,13 @@ console.log("Here");
 var yes;
 
 var orm = {
+    all: function(tableInput, callback) {
+        var queryString = "SELECT * FROM " + tableInput + ";";
+        connection.query(queryString, function (err, result) {
+            if (err) throw err;
+            callback(result);
+        });
+    },
     select: function (whatToSelect, tableInput) {
         var queryString = "SELECT ?? FROM ??";
         connection.query(queryString, [whatToSelect, tableInput], function (err, result) {
