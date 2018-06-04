@@ -1,10 +1,18 @@
-<h1>Your Hamburger App</h1>
+<p>Your Hamburger App </p>
 
-<p> Pick and Choose which hamburger you want to eat</p>
+<p>Pick and Choose which hamburger you want to eat  </p>
+
 <ul>
 {{#each burgers}}
 <li>
-    {{this}}
+    {{this.id}}
 </li>
+<li>
+    {{this.burger_name}}
+</li>
+<li>
+    {{this.devoured}}
+</li>
+
 {{/each}}
 </ul>
