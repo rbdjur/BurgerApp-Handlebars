@@ -1,18 +1,19 @@
 <p>Your Hamburger App </p>
 
-<p>Pick and Choose which hamburger you want to eat  </p>
+<p>Pick and Choose which hamburger you want to eat from our menu or add your own burger! </p>
 
 <ul>
+    <p> Menu </p>
+    <p> Order Number - Burger </p>
 {{#each burgers}}
 <li>
-    {{this.id}}
+    <p> {{this.id}} - {{this.burger_name}} </p>
 </li>
-<li>
-    {{this.burger_name}}
-</li>
-<li>
-    {{this.devoured}}
-</li>
-
 {{/each}}
 </ul>
+
+<form action="/index" method="PUT">
+	<textarea type="text" name="burger"></textarea>
+
+	<button type="submit">Submit</button>
+</form>
