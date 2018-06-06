@@ -20,6 +20,11 @@ router.get("/index", function (req, res) {
         res.render("index", hbsObject);
     });
 });
+// Post route - to create a new column in the current data
+router.post("/devour/:id", function (req, res) {
+    console.log('gettin devoured', req.params.id);
+    res.redirect('/index');
+});
 
 // Post route - to create a new column in the current data
 router.post("/burgers/create", function (req, res) {
