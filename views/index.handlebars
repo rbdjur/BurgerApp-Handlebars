@@ -1,32 +1,42 @@
 
 
+<div class="added-burgers">
+<ul>
+    <p> Order Number - Burger </p>
+    {{#each burgers}} 
+    {{#unless devoured}} 
+        {{> addedburger }} 
+        {{/unless}} 
+    {{/each}}
+</ul>
+</div>
 
-
-<p>Your Hamburger App </p>
-
-<p>Pick and Choose which hamburger you want to eat from our menu or add your own burger! </p>
 
 <ul>
-    <p> Menu </p>
-    <p> Order Number - Burger </p>
-{{#each burgers}}
-<li>
-    <p> {{this.id}} - {{this.burger_name}} </p>
-    <form action="/devour/{{ this.id }}" method="POST">
-    <button type="check-box" name="devoured"> Devour </button>
-    </form>
-</li>
-{{/each}}
+    <p> Eaten Burgers </p>
+    {{#each burgers}} 
+    {{#if devoured}} 
+        {{> addedburger }} 
+        {{/if}} 
+    {{/each}}
+
+
+
 </ul>
 
 <h2>Add a Burger</h2>
-<form action="/burgers/create" method="POST" class="create-form">
+<form action="/api/burger" method="POST" class="create-form">
 
- <div class="form-group">
-    <label for="ca">Burger:</label>
-    <input input type="text" id="ca" name="burger_name">
-  </div>
-  <div class="form-group">
+    <div class="form-group">
+        <label for="ca">Burger:</label>
+        <input type="text" id="ca" name="burger_name">
+    </div>
 
-  <button type="submit">Add Burger</button>
+    <div class="form-group">
+
+    </div>
+
+    <button type="submit">Add Burger</button>
 </form>
+
+{{!-- /burgers/create --}}

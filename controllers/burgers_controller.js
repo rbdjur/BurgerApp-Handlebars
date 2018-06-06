@@ -4,10 +4,12 @@ var router = express.Router();
 
 var burger = require("../models/burger.js");
 
+
+
 console.log("Hello from burgers_controller.js");
 
 // GET the data from the database to fill the index handlbars html. 
-router.get("/index", function (req, res) {
+router.get("/", function (req, res) {
     console.log('getting gotten from burgers_controller.js GET ROUTE - req.body', req.body);
     // Nothing in the req.body
     console.log('getting gotten from burgers_controller.js GET ROUTE - res.body', res.body);
@@ -20,19 +22,48 @@ router.get("/index", function (req, res) {
         res.render("index", hbsObject);
     });
 });
+
+// /burgers/create
 // Post route - to create a new column in the current data
-router.post("/devour/:id", function (req, res) {
-    console.log('gettin devoured', req.params.id);
-    res.redirect('/index');
-});
+router.post("/api/burger", function (req, res) {
+    burger.create(req.body.burger_name, function(result){
+        console.log("/burgers/create", result);
+        res.redirect("/");
+    });
+    });
 
 // Post route - to create a new column in the current data
-router.post("/burgers/create", function (req, res) {
-    burger.create(req.body.burger_name, function(result){
-        console.log(result);
-    })
-    
-    });
+// router.post("/devour/:id", function (req, res) {
+//     console.log('gettin devoured', req.params.id);
+//     res.redirect('index', req.params.id);
+// });
+
+router.put("/api/burger/:id", function(req,res) {
+    console.log("Hi");
+    var condition = req.params.id;
+    burger.update(condition, function(result) {
+                res.redirect("/");
+            });
+        });
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
     // console.log("getting updated from burgers_controllers.js POST ROUTE", req.body);
     // burger.create(["burger_name"], [req.body.burger_name], function (result) {
     //     console.log("Router.post", result)
