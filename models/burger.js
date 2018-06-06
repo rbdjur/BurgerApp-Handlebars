@@ -1,5 +1,7 @@
 var orm = require("../config/orm.js");
 
+console.log("Hello from burger.js")
+
 // handles burger table - model 
 var burger = {
     all: function(cb) {
@@ -7,7 +9,7 @@ var burger = {
             cb(res);
         });
     },
-    create: function(cols, vals, cb) {
+    create: function(table, cols, vals, cb) {
         orm.create("burgers", cols, vals, function(res) {
             cb(res);
         });

@@ -12,8 +12,15 @@
 {{/each}}
 </ul>
 
-<form action="/index" method="PUT">
-	<textarea type="text" name="burger"></textarea>
+<h2>Add a Burger</h2>
+<form class="create-form">
 
-	<button type="submit">Submit</button>
+ <div class="form-group">
+    <label for="ca">Burger:</label>
+    <input type="text" id="ca" name="name">
+  </div>
+
+  <div class="form-group">
+  
+  <button type="submit">Add Burger</button>
 </form>

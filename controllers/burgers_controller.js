@@ -1,45 +1,77 @@
 var express = require("express");
+
 var router = express.Router();
-var burger = require("../models/burger.js")
+
+var burger = require("../models/burger.js");
+
+console.log("Hello from burgers_controller.js");
 
 // GET the data from the database to fill the index handlbars html. 
-router.get("/index", function(req, res) {
-    console.log('getting gotten');
-    burger.all(function(data) {
+router.get("/index", function (req, res) {
+    console.log('getting gotten from burgers_controller.js GET ROUTE - req.body', req.body);
+    // Nothing in the req.body
+    console.log('getting gotten from burgers_controller.js GET ROUTE - res.body', res.body);
+    // undefined in the res.body
+    burger.all(function (data) {
         var hbsObject = {
             burgers: data
         };
-        console.log(hbsObject);
+        console.log("Current database data", hbsObject);
         res.render("index", hbsObject);
     });
 });
 
-router.post("/index", function (req,res) {
-    console.log("getting updated");
-    burger.create(function(data) {
-        console.log("LOOK HERE", data)
-        var postObject = {
-            burgers: data
-        };
-        console.log(postObject);
-        res.render("index", postObject);
-
+// Post route - to create a new column in the current data
+router.post("/burgers", function (req, res) {
+    burger.create([
+        "burger_name", "devoured"
+    ], [req.body.burger_name, req.body.devoured], function (result) {
+        res.json({ burger_name: result.name });
     });
-});
+    });
+    // console.log("getting updated from burgers_controllers.js POST ROUTE", req.body);
+    // burger.create(["burger_name"], [req.body.burger_name], function (result) {
+    //     console.log("Router.post", result)
+    //     res.json({ id: data.insertId });
+        // res.send(data);
+        // var postObject = {
+        //     burgers: data
+        // };
+        // console.log(postObject);
+        // res.render("index", postObject);
+
+    // });
+
+// });
+
+// router.put("/index", function (req, res) {
+//     var condition = "id = " + req.params.id;
+//     console.log("UPDATE ROUTE - from burgers_controllers.js" + condition);
+//     burger.update(function (data) {
+//         var updatedObject = {
+//             burgers: data
+//         };
+//         console.log("updated object" + updatedObject);
+//         res.render("index", updatedObject);
+//     });
+// });
+
 
 // POST the data from the database after the user submitted their own type of burger in the text area
-router.put("/index", function(req, res) {
-    var condition = "id = " + req.params.id;
-    console.log("condition", condition);
 
-    burger.update(function(data) {
-        var updatedObject = {
-            burgers: data
-        };
-        console.log(updatedObject);
-        res.render("index", updatedObject);
-    });
-});
+
+// router.post("/index", function(req, res) {
+//     var condition = "id = " + req.params.id;
+//     console.log("condition", condition);
+
+//     burger.update(function(data) {
+//         var updatedObject = {
+//             burgers: data
+//         };
+//         console.log(updatedObject);
+//         res.render("index", updatedObject);
+//     });
+// });
 
 
 module.exports = router;

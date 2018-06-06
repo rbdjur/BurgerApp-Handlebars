@@ -1,5 +1,5 @@
 var connection = require("./connection.js");
-console.log("Here");
+console.log("Hello from orm.js");
 var yes;
 
 // Question marks for queries 
@@ -64,16 +64,17 @@ var orm = {
     // properties of orm 
     // create 
     // May need to try to remove table in the line directly below this because in the burger.js file, table is not listed with cols and vals. 
-    create: function (cols, vals, cb) {
-        console.log("Inside the orm.create function");
-
+    create: function(table, cols, vals, cb) {
         var queryString = "INSERT INTO " + table;
+
         queryString += " (";
         queryString += cols.toSring();
         queryString += ") ";
         queryString += "VALUES (";
         queryString += printQuestionMarks(vals.length);
         queryString += ") ";
+
+        // var queryString = "INSERT INTO burgers (burger_name, devoured) VALUES (?)";
 
         console.log(queryString);
 
@@ -85,12 +86,13 @@ var orm = {
             cb(result);
           });
 
-        // connection.query("INSERT INTO ?? (?) VALUES (?);", [table, cols, vals], function (err, result) {
+        // connection.query(queryString, vals, function(err, result) {
         //     if (err) {
-        //         throw err;
+        //       throw err;
         //     }
-        //     callback(result);
-        // })
+
+        //     cb(result);
+        //   });
 
     },
     // update 
