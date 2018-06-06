@@ -1,6 +1,6 @@
 var connection = require("./connection.js");
 console.log("Hello from orm.js");
-var yes;
+// var yes;
 
 // Question marks for queries 
 function printQuestionMarks(num) {
@@ -64,11 +64,11 @@ var orm = {
     // properties of orm 
     // create 
     // May need to try to remove table in the line directly below this because in the burger.js file, table is not listed with cols and vals. 
-    create: function(table, cols, vals, cb) {
+    create: function (table, cols, vals, cb) {
         var queryString = "INSERT INTO " + table;
 
         queryString += " (";
-        queryString += cols.toSring();
+        queryString += cols.toString();
         queryString += ") ";
         queryString += "VALUES (";
         queryString += printQuestionMarks(vals.length);
@@ -76,66 +76,37 @@ var orm = {
 
         // var queryString = "INSERT INTO burgers (burger_name, devoured) VALUES (?)";
 
-        console.log(queryString);
+        console.log('my querystring: ', queryString);
 
-        connection.query(queryString, vals, function(err, result) {
+        connection.query(queryString, vals, function (err, result) {
             if (err) {
-              throw err;
+                throw err;
             }
-
+            console.log('now getting result back...', result)
             cb(result);
-          });
-
-        // connection.query(queryString, vals, function(err, result) {
-        //     if (err) {
-        //       throw err;
-        //     }
-
-        //     cb(result);
-        //   });
+        });
 
     },
     // update 
     update: function (table, objColVals, condition, cb) {
-        // var queryString = "UPDATE " + table;
-        // queryString += " SET ";
-        // queryString += objToSql(objColVals);
-        // queryString += " WHERE ";
-        // queryString += condition;
 
         var queryString = "UPDATE " + table;
 
-    queryString += " SET ";
-    queryString += objToSql(objColVals);
-    queryString += " WHERE ";
-    queryString += condition;
+        queryString += " SET ";
+        queryString += objToSql(objColVals);
+        queryString += " WHERE ";
+        queryString += condition;
 
-        // connection.query("UPDATE ?? SET ? WHERE ?", [table, objColVals, condition], function (err, result) {
-        //     if (err) {
-        //         throw err;
-        //     }
-        //     cb(result);
         console.log(queryString);
-        connection.query(queryString, function(err, result) {
-          if (err) {
-            throw err;
-          }
-    
-          cb(result);
+        connection.query(queryString, function (err, result) {
+            if (err) {
+                throw err;
+            }
+
+            cb(result);
 
         });
-        
+
     }
 }
-
-
-// console.log(queryString);
-// connection.query(queryString, function (err, result) {
-//     if (err) {
-//         throw err;
-//     }
-//     callback(result);
-// })
-
-
 module.exports = orm;

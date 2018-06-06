@@ -22,12 +22,11 @@ router.get("/index", function (req, res) {
 });
 
 // Post route - to create a new column in the current data
-router.post("/burgers", function (req, res) {
-    burger.create([
-        "burger_name", "devoured"
-    ], [req.body.burger_name, req.body.devoured], function (result) {
-        res.json({ burger_name: result.name });
-    });
+router.post("/burgers/create", function (req, res) {
+    burger.create(req.body.burger_name, function(result){
+        console.log(result);
+    })
+    
     });
     // console.log("getting updated from burgers_controllers.js POST ROUTE", req.body);
     // burger.create(["burger_name"], [req.body.burger_name], function (result) {
