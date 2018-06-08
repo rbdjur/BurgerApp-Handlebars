@@ -9,6 +9,8 @@ var connection = mysql.createConnection({
     database: "burgers_db"
 });
 
+
+// Code added from heroku pdf from 14 to 27. 
 var connection;
 if(process.env.JAWSDB_URL) {
   //Heroku deployment
