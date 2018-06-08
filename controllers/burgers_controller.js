@@ -32,11 +32,7 @@ router.post("/api/burger", function (req, res) {
     });
     });
 
-// Post route - to create a new column in the current data
-// router.post("/devour/:id", function (req, res) {
-//     console.log('gettin devoured', req.params.id);
-//     res.redirect('index', req.params.id);
-// });
+
 
 router.put("/api/burger/:id", function(req,res) {
     console.log("Hi");

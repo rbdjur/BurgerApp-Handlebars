@@ -1,5 +1,35 @@
+.container {
+    color:white;
+    text-align: center;
+}
+
 body {
     background-color:palevioletred;
-    color: white;
+    color: orange;
     font-family: 'Times New Roman', Times, serif;
+}
+
+.eaten-burgers {
+    color: purple;
+}
+
+.burger-button {
+    color:white;
+}
+
+#menu {
+    color:white;
+}
+
+#list {
+    color:orange;
+}
+
+#description {
+    color: teal;
+
+}
+
+#title {
+    color: cornflowerblue;
 }
