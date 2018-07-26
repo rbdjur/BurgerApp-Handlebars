@@ -25,8 +25,4 @@ app.listen(PORT, function() {
     console.log("Listening on http:localhost/", PORT);
     console.log("Working");
 }); 
-
-
-//  This code went inside orm.selectWhere() - tableInput, colToSearch, valOfCol,
-
-// line 11 is a guess, clarify with TA's / Michael on the syntax that will be able to call the information on the data base. 
+ 
